@@ -11,8 +11,12 @@ router.get('/', (req, res) => {
       include: [Category, Tag]
     })
     .then((products) => {
-      res.json(products);
+      res.json(products)
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     })
+})
 });
 
 // get one product
@@ -25,6 +29,13 @@ router.get('/:id', (req, res) => {
       },
       include: [Category, Tag]
     })
+    .then((products) => {
+      res.json(products)
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  )})
 });
 
 // create new product
